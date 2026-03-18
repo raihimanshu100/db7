@@ -23,7 +23,7 @@ const HeroSection = () => {
     <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-grid-pattern" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-[120px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(800px,100vw)] h-[min(800px,100vw)] rounded-full bg-primary/5 blur-[120px]" />
       
       <motion.div
         variants={container}
