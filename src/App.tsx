@@ -5,12 +5,16 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ScrollProgressBar from "./components/ScrollProgressBar.tsx";
+import BackToTop from "./components/BackToTop.tsx";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <ScrollProgressBar />
+      <BackToTop />
       <Toaster />
       <Sonner />
       <BrowserRouter>

@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Landmark, Lock, EyeOff } from "lucide-react";
 
@@ -8,16 +7,28 @@ const problems = [
     icon: Landmark,
     title: "Unlimited Printing",
     desc: "Governments print money at will, devaluing your savings through inflation.",
+    accent: "border-t-red-500/60",
+    iconBg: "bg-red-500/10",
+    iconColor: "text-red-400",
+    glow: "rgba(239,68,68,0.12)",
   },
   {
     icon: Lock,
     title: "Access Restrictions",
     desc: "Your money is controlled by institutions. Freezes, limits, and geo-restrictions are the norm.",
+    accent: "border-t-orange-500/60",
+    iconBg: "bg-orange-500/10",
+    iconColor: "text-orange-400",
+    glow: "rgba(249,115,22,0.12)",
   },
   {
     icon: EyeOff,
     title: "Zero Transparency",
     desc: "You have no say in how the system works. No governance. No accountability.",
+    accent: "border-t-red-600/60",
+    iconBg: "bg-red-600/10",
+    iconColor: "text-red-400",
+    glow: "rgba(220,38,38,0.12)",
   },
 ];
 
@@ -27,6 +38,7 @@ const ProblemSection = () => {
 
   return (
     <section id="about" className="relative py-24 md:py-32">
+      <div className="section-divider mb-0" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -34,7 +46,7 @@ const ProblemSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="section-label">The Problem</span>
+          <span className="section-label">— The Problem</span>
           <h2 className="section-heading mt-4">Traditional Banking is Broken</h2>
         </motion.div>
 
@@ -45,12 +57,15 @@ const ProblemSection = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.12, duration: 0.6 }}
-              className="group glass-card rounded-2xl p-8 border-t-2 border-t-primary/30 transition-all duration-300 glass-card-hover gold-glow-hover"
+              className={`problem-card group glass-card rounded-2xl p-8 border-t-2 ${p.accent} transition-all duration-300 cursor-default`}
+              style={{ willChange: 'transform' }}
+              whileHover={{ boxShadow: `0 20px 60px ${p.glow}` }}
             >
-              <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <p.icon size={32} className="text-primary mb-5" />
+              <div className={`w-14 h-14 rounded-2xl ${p.iconBg} flex items-center justify-center mb-6`}>
+                <p.icon size={28} className={p.iconColor} />
+              </div>
               <h3 className="font-display text-xl font-semibold text-foreground mb-3">{p.title}</h3>
-              <p className="text-text-secondary leading-relaxed">{p.desc}</p>
+              <p className="text-text-secondary leading-[1.7]">{p.desc}</p>
             </motion.div>
           ))}
         </div>
