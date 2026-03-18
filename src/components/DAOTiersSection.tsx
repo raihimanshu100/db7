@@ -7,21 +7,21 @@ const tiers = [
     desc: "Entry-level governance eligibility",
     accent: "from-amber-700/40 to-amber-900/20",
     border: "border-amber-700/30",
-    height: "h-40",
+    height: "h-32 sm:h-40",
   },
   {
     name: "Director",
     desc: "Proposal rights + higher voting influence",
     accent: "from-slate-400/30 to-slate-600/10",
     border: "border-slate-400/30",
-    height: "h-52",
+    height: "h-40 sm:h-52",
   },
   {
     name: "Sovereign",
     desc: "Strategic ecosystem governance authority",
     accent: "from-primary/30 to-primary/5",
     border: "border-primary/40",
-    height: "h-64",
+    height: "h-52 sm:h-64",
   },
 ];
 
@@ -42,14 +42,14 @@ const DAOTiersSection = () => {
           <h2 className="section-heading mt-4">Earn Your Governance Power</h2>
         </motion.div>
 
-        <div className="flex items-end justify-center gap-6 md:gap-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-center gap-4 sm:gap-6 md:gap-10">
           {tiers.map((tier, i) => (
             <motion.div
               key={tier.name}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.15, duration: 0.6 }}
-              className={`glass-card rounded-2xl p-6 md:p-8 w-full max-w-[260px] ${tier.height} ${tier.border} flex flex-col justify-end text-center transition-all duration-300 glass-card-hover`}
+              className={`glass-card rounded-2xl p-5 sm:p-6 md:p-8 w-full sm:max-w-[260px] ${tier.height} ${tier.border} flex flex-col justify-end text-center transition-all duration-300 glass-card-hover`}
             >
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-t ${tier.accent} -z-10`} />
               <h3 className="font-display text-lg md:text-xl font-bold text-foreground mb-2">{tier.name}</h3>

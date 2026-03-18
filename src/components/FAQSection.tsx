@@ -18,9 +18,9 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
     <div className="border-b border-primary/10">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-5 text-left"
+        className="w-full flex items-center justify-between py-4 sm:py-5 text-left"
       >
-        <span className="font-display text-base font-medium text-foreground pr-4">{q}</span>
+        <span className="font-display text-sm sm:text-base font-medium text-foreground pr-4">{q}</span>
         <ChevronDown
           size={20}
           className={`text-primary shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
@@ -44,7 +44,7 @@ const FAQSection = () => {
 
   return (
     <section id="faq" className="relative py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[800px] px-6">
+      <div ref={ref} className="mx-auto max-w-[800px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

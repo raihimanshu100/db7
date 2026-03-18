@@ -29,21 +29,21 @@ const HeroSection = () => {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto max-w-[1200px] px-6 pt-32 pb-20 grid lg:grid-cols-2 gap-12 items-center"
+        className="relative mx-auto max-w-[1200px] px-4 sm:px-6 pt-28 sm:pt-32 pb-16 sm:pb-20 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
       >
         {/* Text */}
         <div>
-          <motion.h1 variants={item} className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-bold tracking-[-0.02em] leading-[1.05]">
+          <motion.h1 variants={item} className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold tracking-[-0.02em] leading-[1.05]">
             <span className="text-text-secondary">The Future of</span>
             <br />
             <span className="text-gold-gradient">Borderless Banking</span>
           </motion.h1>
 
-          <motion.p variants={item} className="mt-6 text-lg text-text-secondary leading-relaxed max-w-lg">
+          <motion.p variants={item} className="mt-4 sm:mt-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-lg">
             A global, decentralised banking ecosystem with fixed supply, transparent rules, and user governance. No inflation. No restrictions. No middlemen.
           </motion.p>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
+          <motion.div variants={item} className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
             <motion.a
               href="#community"
               whileHover={{ scale: 1.02 }}
@@ -87,7 +87,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.6 }}
-        className="relative mx-auto max-w-[1200px] px-6 w-full"
+        className="relative mx-auto max-w-[1200px] px-4 sm:px-6 w-full"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 glass-card rounded-2xl">
           {stats.map((stat, i) => (

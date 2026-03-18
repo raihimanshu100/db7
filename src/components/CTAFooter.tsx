@@ -14,7 +14,7 @@ const CTAFooter = () => {
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[150px]" />
         </div>
-        <div ref={ref} className="relative mx-auto max-w-[800px] px-6 text-center">
+        <div ref={ref} className="relative mx-auto max-w-[800px] px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -40,8 +40,8 @@ const CTAFooter = () => {
 
       {/* Footer */}
       <footer className="border-t border-primary/10 py-12">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <div className="grid md:grid-cols-3 gap-8 items-center">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center text-center md:text-left">
             {/* Logo */}
             <div>
               <span className="font-display text-xl font-bold text-gold-gradient">dB7</span>
@@ -63,7 +63,7 @@ const CTAFooter = () => {
             </div>
 
             {/* Social */}
-            <div className="flex justify-end gap-4">
+            <div className="flex justify-center md:justify-end gap-4">
               {["X", "TG", "IG", "DC"].map((s) => (
                 <a
                   key={s}

@@ -32,7 +32,7 @@ const EcosystemSection = () => {
 
   return (
     <section id="ecosystem" className="relative py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
+      <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

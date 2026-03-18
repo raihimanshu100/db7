@@ -69,7 +69,7 @@ const Counter = ({ inView }: { inView: boolean }) => {
   }, [inView]);
 
   return (
-    <span className="font-mono-data text-5xl sm:text-6xl md:text-7xl font-bold text-gold-gradient">
+    <span className="font-mono-data text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gold-gradient break-all">
       {display}
     </span>
   );
@@ -82,7 +82,7 @@ const TokenomicsSection = () => {
   return (
     <section id="tokenomics" className="relative py-24 md:py-32">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[120px]" />
-      <div ref={ref} className="relative mx-auto max-w-[1200px] px-6">
+      <div ref={ref} className="relative mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

@@ -32,12 +32,12 @@ const TestimonialsSection = () => {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.3, duration: 0.6 }}
-        className="flex overflow-x-auto gap-6 px-6 pb-4 snap-x scrollbar-hide"
+        className="flex overflow-x-auto gap-4 sm:gap-6 px-4 sm:px-6 pb-4 snap-x scrollbar-hide"
       >
         {testimonials.map((t, i) => (
           <div
             key={i}
-            className="glass-card rounded-2xl p-8 min-w-[320px] max-w-[380px] snap-start shrink-0"
+            className="glass-card rounded-2xl p-5 sm:p-8 min-w-[260px] sm:min-w-[320px] max-w-[340px] sm:max-w-[380px] snap-start shrink-0"
           >
             <Quote size={24} className="text-primary/40 mb-4" />
             <p className="text-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>

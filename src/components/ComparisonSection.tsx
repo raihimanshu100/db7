@@ -17,7 +17,7 @@ const ComparisonSection = () => {
 
   return (
     <section className="relative py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
+      <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -38,24 +38,24 @@ const ComparisonSection = () => {
             <table className="w-full min-w-[500px]">
               <thead>
                 <tr className="border-b border-primary/10">
-                  <th className="text-left p-5 text-sm font-display font-semibold text-text-secondary">Feature</th>
-                  <th className="text-left p-5 text-sm font-display font-semibold text-text-secondary">Traditional Banking</th>
-                  <th className="text-left p-5 text-sm font-display font-semibold text-primary bg-primary/5 border-x border-primary/10">dB7</th>
+                  <th className="text-left p-3 sm:p-5 text-xs sm:text-sm font-display font-semibold text-text-secondary">Feature</th>
+                  <th className="text-left p-3 sm:p-5 text-xs sm:text-sm font-display font-semibold text-text-secondary">Traditional</th>
+                  <th className="text-left p-3 sm:p-5 text-xs sm:text-sm font-display font-semibold text-primary bg-primary/5 border-x border-primary/10">dB7</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((row, i) => (
                   <tr key={row.feature} className={i < rows.length - 1 ? "border-b border-primary/5" : ""}>
-                    <td className="p-5 text-sm font-medium text-foreground">{row.feature}</td>
-                    <td className="p-5 text-sm text-text-secondary">
-                      <span className="flex items-center gap-2">
-                        <XCircle size={16} className="text-text-tertiary shrink-0" />
+                    <td className="p-3 sm:p-5 text-xs sm:text-sm font-medium text-foreground">{row.feature}</td>
+                    <td className="p-3 sm:p-5 text-xs sm:text-sm text-text-secondary">
+                      <span className="flex items-start gap-1.5 sm:gap-2">
+                        <XCircle size={14} className="text-text-tertiary shrink-0 mt-0.5" />
                         {row.trad}
                       </span>
                     </td>
-                    <td className="p-5 text-sm text-foreground bg-primary/5 border-x border-primary/10">
-                      <span className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-primary shrink-0" />
+                    <td className="p-3 sm:p-5 text-xs sm:text-sm text-foreground bg-primary/5 border-x border-primary/10">
+                      <span className="flex items-start gap-1.5 sm:gap-2">
+                        <CheckCircle2 size={14} className="text-primary shrink-0 mt-0.5" />
                         {row.db7}
                       </span>
                     </td>

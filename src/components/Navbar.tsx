@@ -30,7 +30,7 @@ const Navbar = () => {
             : "bg-transparent py-5"
         }`}
       >
-        <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3">
             <span className="font-display text-2xl font-bold text-gold-gradient">dB7</span>
