@@ -29,36 +29,41 @@ const HeroSection = () => {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto max-w-[1200px] px-4 sm:px-6 pt-28 sm:pt-32 pb-16 sm:pb-20 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+        className="relative mx-auto max-w-[1200px] px-4 sm:px-6 pt-20 sm:pt-32 pb-10 sm:pb-20 grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
       >
         {/* Text */}
-        <div>
+        <div className="text-center lg:text-left">
+          <motion.div variants={item} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-xs font-mono-data text-primary tracking-wider uppercase">BNB Smart Chain · Fixed Supply</span>
+          </motion.div>
+
           <motion.h1 variants={item} className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold tracking-[-0.02em] leading-[1.05]">
             <span className="text-text-secondary">The Future of</span>
             <br />
             <span className="text-gold-gradient">Borderless Banking</span>
           </motion.h1>
 
-          <motion.p variants={item} className="mt-4 sm:mt-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-lg">
+          <motion.p variants={item} className="mt-4 sm:mt-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-lg mx-auto lg:mx-0">
             A global, decentralised banking ecosystem with fixed supply, transparent rules, and user governance. No inflation. No restrictions. No middlemen.
           </motion.p>
 
-          <motion.div variants={item} className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
+          <motion.div variants={item} className="mt-6 sm:mt-8 flex flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
             <motion.a
               href="#community"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-gold-gradient text-primary-foreground px-8 py-3.5 rounded-xl font-display font-semibold text-sm"
+              className="bg-gold-gradient text-primary-foreground px-5 sm:px-8 py-3 sm:py-3.5 rounded-xl font-display font-semibold text-sm whitespace-nowrap"
             >
-              Join the Community
+              Join Community
             </motion.a>
             <motion.a
               href="#"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="border border-primary/30 text-primary px-8 py-3.5 rounded-xl font-display font-semibold text-sm hover:bg-primary/5 transition-colors"
+              className="border border-primary/30 text-primary px-5 sm:px-8 py-3 sm:py-3.5 rounded-xl font-display font-semibold text-sm hover:bg-primary/5 transition-colors whitespace-nowrap"
             >
-              Read Whitepaper
+              Whitepaper
             </motion.a>
           </motion.div>
         </div>
@@ -93,7 +98,7 @@ const HeroSection = () => {
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`flex items-center gap-3 p-5 md:p-6 ${
+              className={`flex items-center justify-center lg:justify-start gap-3 p-4 sm:p-5 md:p-6 ${
                 i < stats.length - 1 ? "border-b md:border-b-0 md:border-r border-primary/10" : ""
               } ${i % 2 === 0 && i < 2 ? "border-r md:border-r border-primary/10" : ""}`}
             >
