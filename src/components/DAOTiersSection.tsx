@@ -106,6 +106,46 @@ const DAOTiersSection = () => {
         {/* Ascending connecting line */}
         <div className="mt-8 mx-auto max-w-[700px] h-px bg-gradient-to-r from-amber-700/40 via-slate-400/40 to-primary/60" />
         <p className="text-center text-xs text-text-tertiary mt-3 font-mono-data">Progression: Associate → Director → Sovereign</p>
+
+        {/* Governance Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="mt-16 overflow-x-auto"
+        >
+          <div className="glass-card rounded-2xl border border-primary/15 overflow-hidden min-w-[600px]">
+            <div className="px-6 py-4 border-b border-primary/10">
+              <h3 className="font-display text-base font-semibold text-foreground">Tiered Membership & Voting Power</h3>
+              <p className="text-xs text-text-secondary mt-1">Governance power is earned through commitment. Voting rights activate only after a loyalty delay.</p>
+            </div>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-primary/10">
+                  {["Tier", "Level", "Lock Req.", "Vote Weight", "Activation", "Exclusive Benefit"].map((h) => (
+                    <th key={h} className="px-4 py-3 text-left text-xs font-mono-data text-primary/70 uppercase tracking-wider">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { tier: "Associate", level: "L1", lock: "10,000 dB7", weight: "1.0×", activation: "90 Days", benefit: "Official Governance Member", accent: "#CD7F32" },
+                  { tier: "Director", level: "L2", lock: "100,000 dB7", weight: "1.5×", activation: "180 Days", benefit: "Monthly Virtual Boardroom", accent: "#C0C0C0" },
+                  { tier: "Sovereign", level: "L3", lock: "1,000,000 dB7", weight: "2.0×", activation: "365 Days", benefit: "Sponsored Annual Global Meet", accent: "#C9A227" },
+                ].map((row, i) => (
+                  <tr key={row.tier} className={`border-b border-primary/5 hover:bg-primary/3 transition-colors ${i % 2 === 0 ? "bg-white/[0.01]" : ""}`}>
+                    <td className="px-4 py-3 font-display font-semibold" style={{ color: row.accent }}>{row.tier}</td>
+                    <td className="px-4 py-3 font-mono-data text-xs text-text-secondary">{row.level}</td>
+                    <td className="px-4 py-3 font-mono-data text-xs text-foreground">{row.lock}</td>
+                    <td className="px-4 py-3 font-mono-data text-xs text-primary">{row.weight}</td>
+                    <td className="px-4 py-3 text-xs text-text-secondary">{row.activation}</td>
+                    <td className="px-4 py-3 text-xs text-text-secondary">{row.benefit}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

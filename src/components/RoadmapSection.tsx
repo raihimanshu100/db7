@@ -4,37 +4,52 @@ import { useRef } from "react";
 const phases = [
   {
     phase: "Phase 1",
-    year: "2026",
+    year: "Q1 2026",
     title: "Foundation",
-    items: ["Staking", "Liquidity", "DAO Eligibility", "Governance Readiness"],
+    demandDriver: "Locking · Liquidity · Governance",
+    demandType: "Structural",
+    expectedPrice: "$0.01 – $0.05",
+    items: ["dB7 required for locking rewards", "LP participation on DEX", "Minimum holdings for DAO eligibility"],
     current: true,
   },
   {
     phase: "Phase 2",
-    year: "2026",
+    year: "Q2 2026",
     title: "Utility",
-    items: ["Merchant Infrastructure", "Reward Credits", "Utility App"],
+    demandDriver: "Payments · Merchants",
+    demandType: "Organic",
+    expectedPrice: "$0.05 – $0.10",
+    items: ["QR-based merchant payments", "Cashback & reward recycling", "Transaction-led usage"],
     current: false,
   },
   {
     phase: "Phase 3",
-    year: "Late 2026–Early 2027",
+    year: "Q4 2026 – Q1 2027",
     title: "Sovereignty",
-    items: ["Ownership Renouncement Finality", "DAO Power Shift"],
+    demandDriver: "Compliance · DAO Power",
+    demandType: "Strategic",
+    expectedPrice: "$0.10 – $0.25",
+    items: ["Post-license confidence", "Ownership renounce event", "Governance influence accumulation"],
     current: false,
   },
   {
     phase: "Phase 4",
     year: "2027",
     title: "Scale",
-    items: ["Utility Integrations", "Global Expansion"],
+    demandDriver: "Utilities · Cards · Access",
+    demandType: "Recurring",
+    expectedPrice: "$0.25 – $0.50",
+    items: ["Bills & utility payments", "Tier-2 exchange access", "Card-linked wallet balances"],
     current: false,
   },
   {
     phase: "Phase 5",
     year: "2028+",
     title: "Maturity",
-    items: ["DAO-Led Ecosystem Growth", "Sustainability"],
+    demandDriver: "Commerce · Ecosystem",
+    demandType: "Economic",
+    expectedPrice: "$0.50 – $1.00",
+    items: ["Native e-commerce usage", "DAO grants & partnerships", "Reduced circulating supply"],
     current: false,
   },
 ];
@@ -86,7 +101,7 @@ const RoadmapSection = () => {
                 </div>
                 <h3 className="font-display text-base font-bold text-foreground mb-1">{p.title}</h3>
                 <p className="text-xs text-text-tertiary mb-3">{p.year}</p>
-                <ul className="space-y-1.5">
+                <ul className="space-y-1.5 mb-3">
                   {p.items.map((item) => (
                     <li key={item} className="text-xs text-text-secondary flex items-start gap-1.5">
                       <div className="w-1 h-1 rounded-full bg-primary/50 mt-1.5 shrink-0" />
@@ -94,6 +109,11 @@ const RoadmapSection = () => {
                     </li>
                   ))}
                 </ul>
+                <div className="border-t border-primary/10 pt-3 space-y-1.5">
+                  <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Driver:</span> {p.demandDriver}</p>
+                  <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Type:</span> {p.demandType}</p>
+                  <p className="text-[10px] font-mono-data text-primary/80">{p.expectedPrice}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -124,7 +144,7 @@ const RoadmapSection = () => {
                 </div>
                 <h3 className="font-display text-base font-bold text-foreground mb-1">{p.title}</h3>
                 <p className="text-xs text-text-tertiary mb-3">{p.year}</p>
-                <ul className="space-y-1.5">
+                <ul className="space-y-1.5 mb-3">
                   {p.items.map((item) => (
                     <li key={item} className="text-xs text-text-secondary flex items-start gap-1.5">
                       <div className="w-1 h-1 rounded-full bg-primary/50 mt-1.5 shrink-0" />
@@ -132,6 +152,11 @@ const RoadmapSection = () => {
                     </li>
                   ))}
                 </ul>
+                <div className="border-t border-primary/10 pt-3 space-y-1.5">
+                  <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Driver:</span> {p.demandDriver}</p>
+                  <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Type:</span> {p.demandType}</p>
+                  <p className="text-[10px] font-mono-data text-primary/80">{p.expectedPrice}</p>
+                </div>
               </motion.div>
             ))}
           </div>

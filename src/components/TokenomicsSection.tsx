@@ -1,5 +1,8 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { Copy, Check } from "lucide-react";
+
+const CONTRACT_ADDRESS = "0x39112379f7ee09999f9df0cdcedd51ebc1642b8c";
 
 const allocations = [
   { label: "Ecosystem & Utilities", pct: 25, color: "#C9A227" },
@@ -20,39 +23,44 @@ const DonutChart = ({ inView }: { inView: boolean }) => {
   let cumulative = 0;
 
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="mx-auto">
-      {allocations.map((alloc, i) => {
-        const segLen = (alloc.pct / 100) * circumference;
-        const offset = cumulative;
-        cumulative += segLen;
+    <div className="relative mx-auto" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        {allocations.map((alloc, i) => {
+          const segLen = (alloc.pct / 100) * circumference;
+          const offset = cumulative;
+          cumulative += segLen;
 
-        return (
-          <motion.circle
-            key={alloc.label}
-            cx={size / 2}
-            cy={size / 2}
-            r={radius}
-            fill="none"
-            stroke={alloc.color}
-            strokeWidth={strokeWidth}
-            strokeDasharray={`${segLen} ${circumference - segLen}`}
-            strokeDashoffset={-offset}
-            strokeLinecap="butt"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
-            className="hover:opacity-80 transition-opacity cursor-pointer"
-            transform={`rotate(-90 ${size / 2} ${size / 2})`}
-          />
-        );
-      })}
-      <text x="50%" y="48%" textAnchor="middle" className="fill-foreground font-display text-lg font-bold">
-        1B
-      </text>
-      <text x="50%" y="58%" textAnchor="middle" className="fill-text-secondary text-xs">
-        Total Supply
-      </text>
-    </svg>
+          return (
+            <motion.circle
+              key={alloc.label}
+              cx={size / 2}
+              cy={size / 2}
+              r={radius}
+              fill="none"
+              stroke={alloc.color}
+              strokeWidth={strokeWidth}
+              strokeDasharray={`${segLen} ${circumference - segLen}`}
+              strokeDashoffset={-offset}
+              strokeLinecap="butt"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
+              className="hover:opacity-80 transition-opacity cursor-pointer"
+              transform={`rotate(-90 ${size / 2} ${size / 2})`}
+            />
+          );
+        })}
+      </svg>
+      {/* Coin logo centered inside donut */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <img
+          src="/Coin_Logo.png"
+          alt="dB7 Coin"
+          className="w-16 h-16 object-contain drop-shadow-lg"
+        />
+        <span className="text-xs text-text-secondary mt-1 font-mono-data">Total Supply</span>
+      </div>
+    </div>
   );
 };
 
@@ -78,6 +86,13 @@ const Counter = ({ inView }: { inView: boolean }) => {
 const TokenomicsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(CONTRACT_ADDRESS);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <section id="tokenomics" className="relative py-24 md:py-32">
@@ -101,6 +116,25 @@ const TokenomicsSection = () => {
         >
           <Counter inView={inView} />
           <p className="mt-4 text-text-secondary">Total Supply — Fixed. Immutable. No minting. No burning.</p>
+
+          {/* Contract Address */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="mt-6 inline-flex items-center gap-3 px-4 py-2.5 rounded-xl border border-primary/20 bg-primary/5 backdrop-blur-sm"
+          >
+            <span className="text-xs text-text-secondary font-mono-data uppercase tracking-wider">Contract:</span>
+            <span className="font-mono-data text-sm text-foreground truncate max-w-[160px] sm:max-w-xs">{CONTRACT_ADDRESS}</span>
+            <button
+              onClick={handleCopy}
+              className="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors shrink-0"
+              title="Copy contract address"
+            >
+              {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
+              <span className="text-xs font-mono-data">{copied ? "Copied!" : "Copy"}</span>
+            </button>
+          </motion.div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">

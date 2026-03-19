@@ -53,14 +53,16 @@ const Navbar = () => {
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
             <motion.a
-              href="#community"
+              href="https://banking.db7coin.com"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="bg-gold-gradient text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-display font-semibold"
             >
-              Join Community
+              Launch App
             </motion.a>
           </div>
 
@@ -93,11 +95,13 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="#community"
+            href="https://banking.db7coin.com"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
             className="bg-gold-gradient text-primary-foreground px-8 py-3 rounded-lg font-display font-semibold mt-4"
           >
-            Join Community
+            Launch App
           </a>
         </motion.div>
       )}

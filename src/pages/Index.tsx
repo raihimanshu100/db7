@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import IdeologySection from "@/components/IdeologySection";
 import TokenomicsSection from "@/components/TokenomicsSection";
+import AirdropSection from "@/components/AirdropSection";
 import EcosystemSection from "@/components/EcosystemSection";
 import DAOTiersSection from "@/components/DAOTiersSection";
 import ComparisonSection from "@/components/ComparisonSection";
@@ -22,6 +23,7 @@ const Index = () => {
       <ProblemSection />
       <IdeologySection />
       <TokenomicsSection />
+      <AirdropSection />
       <EcosystemSection />
       <DAOTiersSection />
       <ComparisonSection />

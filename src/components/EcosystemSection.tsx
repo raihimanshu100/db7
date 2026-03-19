@@ -12,6 +12,7 @@ const apps = [
     color: "from-amber-500/10 to-transparent",
     borderColor: "border-amber-500/20",
     activeBorder: "border-amber-500/50",
+    appUrl: "https://banking.db7coin.com",
   },
   {
     icon: ShoppingBag,
@@ -22,6 +23,7 @@ const apps = [
     color: "from-primary/10 to-transparent",
     borderColor: "border-primary/20",
     activeBorder: "border-primary/50",
+    appUrl: null,
   },
   {
     icon: Vote,
@@ -32,6 +34,7 @@ const apps = [
     color: "from-yellow-400/10 to-transparent",
     borderColor: "border-yellow-400/20",
     activeBorder: "border-yellow-400/50",
+    appUrl: null,
   },
 ];
 
@@ -102,6 +105,18 @@ const EcosystemSection = () => {
                 ))}
               </ul>
               <p className="text-xs text-text-tertiary italic border-t border-primary/10 pt-4">{apps[activeTab].note}</p>
+              {apps[activeTab].appUrl && (
+                <div className="mt-5">
+                  <a
+                    href={apps[activeTab].appUrl!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gold-gradient text-primary-foreground px-6 py-2.5 rounded-lg font-display font-semibold text-sm hover:opacity-90 transition-opacity"
+                  >
+                    Login / Sign Up →
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </motion.div>
