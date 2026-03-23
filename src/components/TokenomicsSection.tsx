@@ -52,13 +52,12 @@ const DonutChart = ({ inView }: { inView: boolean }) => {
         })}
       </svg>
       {/* Coin logo centered inside donut */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
         <img
           src="/Coin_Logo.png"
           alt="dB7 Coin"
-          className="w-16 h-16 object-contain drop-shadow-lg"
+          className="w-36 h-36 object-contain drop-shadow-[0_0_20px_rgba(201,162,39,0.3)]"
         />
-        <span className="text-xs text-text-secondary mt-1 font-mono-data">Total Supply</span>
       </div>
     </div>
   );
@@ -95,7 +94,7 @@ const TokenomicsSection = () => {
   };
 
   return (
-    <section id="tokenomics" className="relative py-24 md:py-32">
+    <section id="tokenomics" className="relative py-14 md:py-20">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(600px,100vw)] h-[min(600px,100vw)] rounded-full bg-primary/3 blur-[120px]" />
       <div ref={ref} className="relative mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div

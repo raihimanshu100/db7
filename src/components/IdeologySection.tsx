@@ -31,7 +31,7 @@ const IdeologySection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-24 md:py-32">
+    <section className="relative py-16 md:py-20">
       <div className="section-divider" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
@@ -69,7 +69,7 @@ const IdeologySection = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-20 relative mx-auto max-w-3xl"
+          className="mt-10 relative mx-auto max-w-3xl"
         >
           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent mb-10" />
           <div className="text-center px-4 sm:px-8 relative">

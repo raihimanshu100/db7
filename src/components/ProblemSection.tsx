@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Landmark, Lock, EyeOff } from "lucide-react";
+import { Landmark, Lock, EyeOff, DollarSign, Clock, TrendingDown } from "lucide-react";
 
 const problems = [
   {
@@ -30,6 +30,33 @@ const problems = [
     iconColor: "text-red-400",
     glow: "rgba(220,38,38,0.12)",
   },
+  {
+    icon: DollarSign,
+    title: "Hidden Fees",
+    desc: "Banks charge maintenance fees, transfer fees, and penalties you never agreed to. Your money shrinks silently.",
+    accent: "border-t-orange-400/60",
+    iconBg: "bg-orange-400/10",
+    iconColor: "text-orange-300",
+    glow: "rgba(251,146,60,0.12)",
+  },
+  {
+    icon: Clock,
+    title: "Slow Settlements",
+    desc: "Cross-border transfers take days. Weekends and holidays freeze your funds. Time is money — banks waste both.",
+    accent: "border-t-red-400/60",
+    iconBg: "bg-red-400/10",
+    iconColor: "text-red-300",
+    glow: "rgba(248,113,113,0.12)",
+  },
+  {
+    icon: TrendingDown,
+    title: "Currency Manipulation",
+    desc: "Central banks devalue currencies at will. Your purchasing power drops while the system protects itself.",
+    accent: "border-t-red-500/60",
+    iconBg: "bg-red-500/10",
+    iconColor: "text-red-400",
+    glow: "rgba(239,68,68,0.12)",
+  },
 ];
 
 const ProblemSection = () => {
@@ -37,7 +64,7 @@ const ProblemSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative py-24 md:py-32">
+    <section id="about" className="relative py-14 md:py-20">
       <div className="section-divider mb-0" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div

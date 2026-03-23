@@ -52,7 +52,7 @@ const FAQSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="faq" className="relative py-24 md:py-32">
+    <section id="faq" className="relative py-14 md:py-20">
       <div className="section-divider" />
       <div ref={ref} className="mx-auto max-w-[800px] px-4 sm:px-6">
         <motion.div

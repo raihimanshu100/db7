@@ -106,6 +106,14 @@ const HeroSection = () => {
               />
             ))}
             <div className="absolute inset-[80px] rounded-full bg-primary/5 blur-xl" />
+            {/* Coin Logo centered in rings */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <img
+                src="/Coin_Logo.png"
+                alt="dB7 Coin"
+                className="w-24 h-24 object-contain drop-shadow-[0_0_30px_rgba(201,162,39,0.4)]"
+              />
+            </div>
           </div>
         </motion.div>
       </motion.div>
