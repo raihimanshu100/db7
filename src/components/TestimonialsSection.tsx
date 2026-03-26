@@ -16,7 +16,7 @@ const TestimonialsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-14 md:py-20 overflow-hidden">
+    <section className="relative py-8 md:py-20 overflow-hidden">
       <div className="section-divider" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div

@@ -44,7 +44,7 @@ const EcosystemSection = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="ecosystem" className="relative py-14 md:py-20">
+    <section id="ecosystem" className="relative py-8 md:py-20">
       <div className="section-divider" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div

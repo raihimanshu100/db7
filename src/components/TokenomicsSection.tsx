@@ -94,7 +94,7 @@ const TokenomicsSection = () => {
   };
 
   return (
-    <section id="tokenomics" className="relative py-14 md:py-20">
+    <section id="tokenomics" className="relative py-8 md:py-20">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(600px,100vw)] h-[min(600px,100vw)] rounded-full bg-primary/3 blur-[120px]" />
       <div ref={ref} className="relative mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
@@ -139,18 +139,18 @@ const TokenomicsSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <DonutChart inView={inView} />
 
-          <div className="space-y-3">
+          <div className="space-y-2.5 px-2 sm:px-0">
             {allocations.map((alloc, i) => (
               <motion.div
                 key={alloc.label}
                 initial={{ opacity: 0, x: 20 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.5 + i * 0.08, duration: 0.4 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2 sm:gap-3 border-b border-primary/5 pb-2.5"
               >
-                <div className="w-4 h-4 rounded-sm shrink-0" style={{ backgroundColor: alloc.color }} />
-                <span className="text-foreground text-sm flex-1">{alloc.label}</span>
-                <span className="font-mono-data text-sm text-primary">{alloc.pct}%</span>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-sm shrink-0" style={{ backgroundColor: alloc.color }} />
+                <span className="text-foreground text-xs sm:text-sm flex-1">{alloc.label}</span>
+                <span className="font-mono-data text-xs sm:text-sm text-primary font-semibold">{alloc.pct}%</span>
               </motion.div>
             ))}
           </div>

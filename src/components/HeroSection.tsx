@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Globe, Zap, Users, ChevronDown } from "lucide-react";
+import { Shield, Globe, Zap, Users } from "lucide-react";
 
 const stats = [
   { icon: Zap, label: "Fixed Supply", value: "1B" },
@@ -27,7 +27,7 @@ const HeroSection = () => {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-[1]"
+        className="absolute inset-0 w-full h-full object-cover object-center z-[1]"
         style={{ opacity: 0.5 }}
       >
         <source src="/hero_bg-compressed.mp4" type="video/mp4" />
@@ -50,7 +50,7 @@ const HeroSection = () => {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative z-[3] mx-auto max-w-[1200px] px-4 sm:px-6 pt-20 sm:pt-32 pb-10 sm:pb-20 grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
+        className="relative z-[3] mx-auto max-w-[1200px] px-4 sm:px-6 pt-16 sm:pt-32 pb-8 sm:pb-20 grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
       >
         {/* Text */}
         <div className="text-center lg:text-left">
@@ -144,23 +144,6 @@ const HeroSection = () => {
         </div>
       </motion.div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="relative z-[3] flex justify-center mt-8 mb-4 sm:mb-8"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-1 text-primary/50 cursor-pointer"
-          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          <span className="text-[10px] font-mono-data tracking-widest uppercase">Scroll</span>
-          <ChevronDown size={18} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };

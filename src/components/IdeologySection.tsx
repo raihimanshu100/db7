@@ -31,14 +31,14 @@ const IdeologySection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-16 md:py-20">
+    <section className="relative py-8 md:py-20">
       <div className="section-divider" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <span className="section-label">— Our Ideology</span>
           <h2 className="section-heading mt-4">Money Should Follow Rules, Not Rulers</h2>
@@ -73,11 +73,11 @@ const IdeologySection = () => {
         >
           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent mb-10" />
           <div className="text-center px-4 sm:px-8 relative">
-            <span className="absolute -top-4 left-4 sm:left-8 font-display text-6xl sm:text-8xl text-primary/15 leading-none select-none">«</span>
+            <span className="absolute -top-2 sm:-top-4 left-2 sm:left-8 font-display text-4xl sm:text-8xl text-primary/15 leading-none select-none">«</span>
             <blockquote className="text-xl sm:text-2xl md:text-3xl italic text-primary leading-relaxed font-display font-medium">
               "Decentralised Banking 24×7 is not about replacing banks. It is about replacing who controls banking."
             </blockquote>
-            <span className="absolute -bottom-6 right-4 sm:right-8 font-display text-6xl sm:text-8xl text-primary/15 leading-none select-none">»</span>
+            <span className="absolute -bottom-4 sm:-bottom-6 right-2 sm:right-8 font-display text-4xl sm:text-8xl text-primary/15 leading-none select-none">»</span>
           </div>
           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent mt-10" />
         </motion.div>

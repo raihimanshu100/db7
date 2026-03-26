@@ -64,14 +64,14 @@ const ProblemSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative py-14 md:py-20">
+    <section id="about" className="relative py-8 md:py-20">
       <div className="section-divider mb-0" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <span className="section-label">— The Problem</span>
           <h2 className="section-heading mt-4">Traditional Banking is Broken</h2>

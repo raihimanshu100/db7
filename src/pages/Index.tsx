@@ -9,9 +9,7 @@ import DAOTiersSection from "@/components/DAOTiersSection";
 import ComparisonSection from "@/components/ComparisonSection";
 import MerchantSection from "@/components/MerchantSection";
 import RoadmapSection from "@/components/RoadmapSection";
-import TeamSection from "@/components/TeamSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import PartnersSection from "@/components/PartnersSection";
 import FAQSection from "@/components/FAQSection";
 import CTAFooter from "@/components/CTAFooter";
 
@@ -29,9 +27,7 @@ const Index = () => {
       <ComparisonSection />
       <MerchantSection />
       <RoadmapSection />
-      <TeamSection />
       <TestimonialsSection />
-      <PartnersSection />
       <FAQSection />
       <CTAFooter />
     </div>

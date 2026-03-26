@@ -1,5 +1,5 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef, useState } from "react";
 
 const phases = [
   {
@@ -56,17 +56,31 @@ const phases = [
 
 const RoadmapSection = () => {
   const ref = useRef(null);
+  const timelineRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  // Track which dots should be filled based on scroll
+  const [filledDots, setFilledDots] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    // Each phase gets an equal portion of the scroll
+    const count = Math.min(phases.length, Math.floor(v * phases.length) + 1);
+    setFilledDots(v <= 0 ? 0 : count);
+  });
 
   return (
-    <section id="roadmap" className="relative py-14 md:py-20">
+    <section id="roadmap" className="relative py-8 md:py-20">
       <div className="section-divider" />
       <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <span className="section-label">— Roadmap</span>
           <h2 className="section-heading mt-4">Building the Future</h2>
@@ -120,45 +134,62 @@ const RoadmapSection = () => {
         </div>
 
         {/* Mobile: vertical timeline */}
-        <div className="md:hidden relative pl-8">
-          <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-primary/30 to-primary/10" />
+        <div className="md:hidden relative pl-8" ref={timelineRef}>
+          {/* Background track */}
+          <div className="absolute left-3 top-0 bottom-0 w-px bg-primary/10" />
+          {/* Animated fill line */}
+          <motion.div
+            className="absolute left-3 top-0 w-px origin-top"
+            style={{
+              height: lineHeight,
+              background: 'linear-gradient(180deg, hsl(45 75% 47%), hsl(48 88% 68%))',
+              boxShadow: '0 0 8px rgba(201,162,39,0.4)',
+            }}
+          />
           <div className="flex flex-col gap-6">
-            {phases.map((p, i) => (
-              <motion.div
-                key={p.phase}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
-                className={`relative glass-card rounded-2xl p-5 ${
-                  p.current ? "ring-1 ring-primary ring-offset-2 ring-offset-background" : ""
-                }`}
-              >
-                <div className={`absolute -left-[22px] top-5 w-3.5 h-3.5 rounded-full border-2 ${
-                  p.current ? "bg-primary border-primary animate-pulse" : "bg-background border-text-tertiary"
-                }`} />
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-mono-data text-xs text-primary">{p.phase}</span>
-                  {p.current && (
-                    <span className="text-[9px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full font-mono-data">CURRENT</span>
-                  )}
-                </div>
-                <h3 className="font-display text-base font-bold text-foreground mb-1">{p.title}</h3>
-                <p className="text-xs text-text-tertiary mb-3">{p.year}</p>
-                <ul className="space-y-1.5 mb-3">
-                  {p.items.map((item) => (
-                    <li key={item} className="text-xs text-text-secondary flex items-start gap-1.5">
-                      <div className="w-1 h-1 rounded-full bg-primary/50 mt-1.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="border-t border-primary/10 pt-3 space-y-1.5">
-                  <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Driver:</span> {p.demandDriver}</p>
-                  <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Type:</span> {p.demandType}</p>
-                  <p className="text-[10px] font-mono-data text-primary/80">{p.expectedPrice}</p>
-                </div>
-              </motion.div>
-            ))}
+            {phases.map((p, i) => {
+              const isFilled = i < filledDots;
+              return (
+                <motion.div
+                  key={p.phase}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: i * 0.12, duration: 0.5 }}
+                  className="relative glass-card rounded-2xl p-5"
+                >
+                  {/* Dot — fills gold on scroll, empties on scroll back */}
+                  <div
+                    className="absolute -left-[22px] top-5 w-3.5 h-3.5 rounded-full border-2 transition-all duration-500"
+                    style={{
+                      backgroundColor: isFilled ? 'hsl(45 75% 47%)' : 'transparent',
+                      borderColor: isFilled ? 'hsl(45 75% 47%)' : 'hsl(222 10% 39%)',
+                      boxShadow: isFilled ? '0 0 10px rgba(201,162,39,0.5)' : 'none',
+                    }}
+                  />
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-mono-data text-xs text-primary">{p.phase}</span>
+                    {p.current && (
+                      <span className="text-[9px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full font-mono-data">CURRENT</span>
+                    )}
+                  </div>
+                  <h3 className="font-display text-base font-bold text-foreground mb-1">{p.title}</h3>
+                  <p className="text-xs text-text-tertiary mb-3">{p.year}</p>
+                  <ul className="space-y-1.5 mb-3">
+                    {p.items.map((item) => (
+                      <li key={item} className="text-xs text-text-secondary flex items-start gap-1.5">
+                        <div className="w-1 h-1 rounded-full bg-primary/50 mt-1.5 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="border-t border-primary/10 pt-3 space-y-1.5">
+                    <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Driver:</span> {p.demandDriver}</p>
+                    <p className="text-[10px] text-text-tertiary"><span className="text-primary/70">Type:</span> {p.demandType}</p>
+                    <p className="text-[10px] font-mono-data text-primary/80">{p.expectedPrice}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

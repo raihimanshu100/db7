@@ -10,7 +10,7 @@ const CTAFooter = () => {
   return (
     <>
       {/* CTA Block */}
-      <section id="community" className="relative py-14 md:py-20">
+      <section id="community" className="relative py-8 md:py-20">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[150px]" />
         </div>

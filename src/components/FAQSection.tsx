@@ -12,17 +12,16 @@ const faqs = [
   { q: "Which blockchain is dB7 on?", a: "BNB Smart Chain (BSC). The smart contract is non-upgradeable and ownership is renounced." },
 ];
 
-const FAQItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
-  const [open, setOpen] = useState(false);
+const FAQItem = ({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) => {
   return (
-    <div className={`border-b border-primary/10 transition-all duration-300 ${open ? "border-l-2 border-l-primary pl-4" : ""}`}>
+    <div className={`border-b border-primary/10 transition-all duration-300 ${isOpen ? "border-l-2 border-l-primary pl-4" : ""}`}>
       <button
-        onClick={() => setOpen(!open)}
+        onClick={onToggle}
         className="w-full flex items-center justify-between py-5 text-left gap-4"
       >
         <span className="font-display text-sm sm:text-base font-medium text-foreground leading-relaxed">{q}</span>
         <motion.div
-          animate={{ rotate: open ? 45 : 0 }}
+          animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.25 }}
           className="shrink-0 w-7 h-7 rounded-full border border-primary/25 flex items-center justify-center"
         >
@@ -30,7 +29,7 @@ const FAQItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
         </motion.div>
       </button>
       <AnimatePresence initial={false}>
-        {open && (
+        {isOpen && (
           <motion.div
             key="content"
             initial={{ height: 0, opacity: 0 }}
@@ -50,9 +49,14 @@ const FAQItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
 const FAQSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
-    <section id="faq" className="relative py-14 md:py-20">
+    <section id="faq" className="relative py-8 md:py-20">
       <div className="section-divider" />
       <div ref={ref} className="mx-auto max-w-[800px] px-4 sm:px-6">
         <motion.div
@@ -72,7 +76,13 @@ const FAQSection = () => {
           className="glass-card rounded-2xl px-6 sm:px-8 py-2"
         >
           {faqs.map((faq, i) => (
-            <FAQItem key={faq.q} {...faq} index={i} />
+            <FAQItem
+              key={faq.q}
+              q={faq.q}
+              a={faq.a}
+              isOpen={openIndex === i}
+              onToggle={() => handleToggle(i)}
+            />
           ))}
         </motion.div>
       </div>
