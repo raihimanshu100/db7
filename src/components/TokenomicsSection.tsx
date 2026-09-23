@@ -95,7 +95,13 @@ const TokenomicsSection = () => {
 
   return (
     <section id="tokenomics" className="relative py-8 md:py-20">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(600px,100vw)] h-[min(600px,100vw)] rounded-full bg-primary/3 blur-[120px]" />
+      {/* Radial gradient instead of a 120px blur filter — cheaper to composite
+          while scrolling. (bg-primary/3 was not a valid Tailwind opacity step,
+          so this glow previously rendered nothing at all.) */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(900px,100vw)] h-[min(900px,100vw)] rounded-full"
+        style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.03) 0%, transparent 60%)' }}
+      />
       <div ref={ref} className="relative mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

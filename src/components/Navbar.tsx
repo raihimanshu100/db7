@@ -26,7 +26,7 @@ const Navbar = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass-card border-b border-primary/10 py-3"
+            ? "glass-card-blur border-b border-primary/10 py-3"
             : "bg-background/80 backdrop-blur-md border-b border-primary/10 py-4 lg:bg-transparent lg:backdrop-blur-none lg:border-transparent lg:py-5"
         }`}
       >

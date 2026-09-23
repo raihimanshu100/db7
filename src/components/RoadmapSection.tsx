@@ -69,7 +69,10 @@ const RoadmapSection = () => {
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     // Each phase gets an equal portion of the scroll
     const count = Math.min(phases.length, Math.floor(v * phases.length) + 1);
-    setFilledDots(v <= 0 ? 0 : count);
+    const next = v <= 0 ? 0 : count;
+    // Only re-render when the dot count actually changes; this fires on
+    // every scroll frame otherwise.
+    setFilledDots((prev) => (prev === next ? prev : next));
   });
 
   return (

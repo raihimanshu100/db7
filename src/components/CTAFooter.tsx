@@ -12,7 +12,12 @@ const CTAFooter = () => {
       {/* CTA Block */}
       <section id="community" className="relative py-8 md:py-20">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[150px]" />
+          {/* Radial gradient instead of a 150px blur filter — same soft glow,
+              without forcing a large offscreen blur buffer on every frame. */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full"
+            style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.05) 0%, transparent 60%)' }}
+          />
         </div>
         <div ref={ref} className="relative mx-auto max-w-[800px] px-4 sm:px-6 text-center">
           <motion.div
