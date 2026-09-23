@@ -8,17 +8,17 @@ A single-page site built with React, TypeScript, Vite and Tailwind CSS.
 
 ## Requirements
 
-You need **Node.js version 20 or newer** installed. Check what you have:
+**Node.js version 20 or newer.** Check what is installed:
 
 ```bash
 node -v
 ```
 
-If the command isn't found or the number is below 20, download the LTS version from [nodejs.org](https://nodejs.org). npm is included with Node.
+If the command is not found or the version is below 20, install the LTS release from [nodejs.org](https://nodejs.org). npm is included with Node.
 
 ---
 
-## Running it on your computer
+## Running it locally
 
 **1. Get the code**
 
@@ -33,7 +33,7 @@ cd db7
 npm install
 ```
 
-This downloads everything the project needs into a `node_modules` folder. It takes a minute or two the first time. You only need to run this again if the dependencies change.
+This downloads everything the project needs into a `node_modules` folder. It takes a minute or two the first time, and only needs repeating when dependencies change.
 
 **3. Start the site**
 
@@ -41,81 +41,86 @@ This downloads everything the project needs into a `node_modules` folder. It tak
 npm run dev
 ```
 
-Then open **http://localhost:8080** in your browser.
+Open **http://localhost:8080** in a browser.
 
-The page reloads automatically whenever a file is saved, so you can leave this running while making changes. Press `Ctrl + C` in the terminal to stop it.
+The page reloads automatically whenever a file is saved. Press `Ctrl + C` in the terminal to stop it.
 
 ---
 
-## Available commands
+## Commands
 
 | Command | What it does |
 |---|---|
 | `npm run dev` | Runs the site locally at http://localhost:8080 |
 | `npm run build` | Creates the production files in a `dist` folder |
-| `npm run preview` | Serves the built `dist` folder, to check it before deploying |
+| `npm run preview` | Serves the built `dist` folder locally, to check it before deploying |
 | `npm run lint` | Checks the code for problems |
 | `npm test` | Runs the test suite |
 
 ---
 
-## Deploying
+## Building for production
 
-The site is a **static build** — there is no backend, database or server-side code. Any static host will run it.
-
-Every host needs the same three settings:
-
-| Setting | Value |
-|---|---|
-| Build command | `npm run build` |
-| Publish directory | `dist` |
-| SPA redirect | `/*` → `/index.html` |
-
-The last one matters. This is a single-page app, so the host must serve `index.html` for every path. Without it, visiting a URL directly gives a 404.
-
-### Vercel
-
-1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
-2. **Add New → Project**, select this repository
-3. Vercel detects Vite automatically — the defaults are correct
-4. Click **Deploy**
-
-The SPA redirect is handled automatically.
-
-### Netlify
-
-1. Go to [netlify.com](https://netlify.com) and sign in with GitHub
-2. **Add new site → Import an existing project**, select this repository
-3. Build command: `npm run build` · Publish directory: `dist`
-4. Click **Deploy**
-
-For the SPA redirect, add a file named `_redirects` inside the `public` folder containing:
-
-```
-/*  /index.html  200
+```bash
+npm install
+npm run build
 ```
 
-### Cloudflare Pages
+This produces a `dist` folder containing the complete site — HTML, CSS, JavaScript and assets. That folder is everything needed to serve the site.
 
-1. Go to the Cloudflare dashboard → **Workers & Pages → Create → Pages**
-2. Connect this repository
-3. Framework preset: **Vite** · Build command: `npm run build` · Output directory: `dist`
-4. Click **Save and Deploy**
+To check the build locally before uploading:
 
-### GitHub Pages
-
-Works, but needs an extra step: set `base: '/db7/'` in `vite.config.ts` (matching the repository name), since the site is served from a subfolder rather than the domain root.
+```bash
+npm run preview
+```
 
 ---
 
-After the first deployment, each host rebuilds automatically whenever you push to the `main` branch.
+## Deployment details
+
+The site is a **static build**. There is no backend, database, API or server-side code — just files served over HTTP.
+
+| Setting | Value |
+|---|---|
+| Node version | 20 or newer |
+| Install command | `npm install` |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Environment variables | none required |
+
+### Required server configuration
+
+**SPA fallback —** this is a single-page application. The server must serve `index.html` for any path that does not match a file on disk. Without this rule, navigating directly to a URL returns a 404.
+
+On nginx:
+
+```nginx
+location / {
+    try_files $uri $uri/ /index.html;
+}
+```
+
+On Apache, place an `.htaccess` in the web root:
+
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+```
+
+### Recommended
+
+- Serve over HTTPS. The "copy contract address" button uses the browser clipboard API, which browsers only permit on secure origins.
+- Enable gzip or brotli compression. The build is roughly 500 KB of JavaScript and 78 KB of CSS, compressing to about 156 KB and 14 KB.
+- Cache `dist/assets/*` aggressively — those filenames include a content hash and change whenever the content changes. Do not cache `index.html`.
 
 ---
 
 ## Project layout
 
 ```
-public/              Images and video served as-is
+public/              Served as-is, copied into dist unchanged
   Coin_Logo.png
   hero_bg-compressed.mp4
 
@@ -142,6 +147,6 @@ To reorder or remove a section, edit `src/pages/Index.tsx`.
 
 ## Notes
 
-- The colour scheme, fonts and animations are defined in `src/index.css` and `tailwind.config.ts`
+- Colours, fonts and animations are defined in `src/index.css` and `tailwind.config.ts`
 - The contract address shown on the page is in `src/components/TokenomicsSection.tsx`
 - `dist` and `node_modules` are generated by the commands above and are intentionally not stored in the repository

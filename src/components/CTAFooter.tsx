@@ -80,6 +80,19 @@ const CTAFooter = () => {
           <p className="mt-8 text-[11px] text-text-tertiary leading-relaxed text-center max-w-4xl mx-auto">
             dB7 is a utility token designed for participation in a decentralised digital banking ecosystem. It is not legal tender, equity, a security, or a promise of returns. Usage may vary by jurisdiction and users are responsible for regulatory compliance.
           </p>
+
+          {/* Credit */}
+          <p className="mt-6 text-[11px] text-text-tertiary text-center md:text-right">
+            Design &amp; Developed by{" "}
+            <a
+              href="https://www.linkedin.com/in/rai001/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-secondary hover:text-primary transition-colors"
+            >
+              Himanshu Rai
+            </a>
+          </p>
         </div>
       </footer>
     </>
