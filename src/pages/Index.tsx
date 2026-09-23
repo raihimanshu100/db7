@@ -3,14 +3,13 @@ import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import IdeologySection from "@/components/IdeologySection";
 import TokenomicsSection from "@/components/TokenomicsSection";
+import AirdropSection from "@/components/AirdropSection";
 import EcosystemSection from "@/components/EcosystemSection";
 import DAOTiersSection from "@/components/DAOTiersSection";
 import ComparisonSection from "@/components/ComparisonSection";
 import MerchantSection from "@/components/MerchantSection";
 import RoadmapSection from "@/components/RoadmapSection";
-import TeamSection from "@/components/TeamSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import PartnersSection from "@/components/PartnersSection";
 import FAQSection from "@/components/FAQSection";
 import CTAFooter from "@/components/CTAFooter";
 
@@ -22,14 +21,13 @@ const Index = () => {
       <ProblemSection />
       <IdeologySection />
       <TokenomicsSection />
+      <AirdropSection />
       <EcosystemSection />
       <DAOTiersSection />
       <ComparisonSection />
       <MerchantSection />
       <RoadmapSection />
-      <TeamSection />
       <TestimonialsSection />
-      <PartnersSection />
       <FAQSection />
       <CTAFooter />
     </div>

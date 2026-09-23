@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Crypto Website
 
 TODO: Document your project here

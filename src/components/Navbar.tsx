@@ -27,10 +27,10 @@ const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
             ? "glass-card border-b border-primary/10 py-3"
-            : "bg-transparent py-5"
+            : "bg-background/80 backdrop-blur-md border-b border-primary/10 py-4 lg:bg-transparent lg:backdrop-blur-none lg:border-transparent lg:py-5"
         }`}
       >
-        <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3">
             <span className="font-display text-2xl font-bold text-gold-gradient">dB7</span>
@@ -53,14 +53,16 @@ const Navbar = () => {
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
             <motion.a
-              href="#community"
+              href="https://banking.db7coin.com"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="bg-gold-gradient text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-display font-semibold"
             >
-              Join Community
+              Launch App
             </motion.a>
           </div>
 
@@ -93,11 +95,13 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="#community"
+            href="https://banking.db7coin.com"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
             className="bg-gold-gradient text-primary-foreground px-8 py-3 rounded-lg font-display font-semibold mt-4"
           >
-            Join Community
+            Launch App
           </a>
         </motion.div>
       )}

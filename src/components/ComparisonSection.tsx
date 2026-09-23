@@ -16,15 +16,16 @@ const ComparisonSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
+    <section className="relative py-8 md:py-20">
+      <div className="section-divider" />
+      <div ref={ref} className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <span className="section-label">Comparison</span>
+          <span className="section-label">— Comparison</span>
           <h2 className="section-heading mt-4">A Better Financial System</h2>
         </motion.div>
 
@@ -35,31 +36,46 @@ const ComparisonSection = () => {
           className="glass-card rounded-2xl overflow-hidden"
         >
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[500px]">
+            <table className="w-full min-w-[340px]">
               <thead>
                 <tr className="border-b border-primary/10">
-                  <th className="text-left p-5 text-sm font-display font-semibold text-text-secondary">Feature</th>
-                  <th className="text-left p-5 text-sm font-display font-semibold text-text-secondary">Traditional Banking</th>
-                  <th className="text-left p-5 text-sm font-display font-semibold text-primary bg-primary/5 border-x border-primary/10">dB7</th>
+                  <th className="text-left p-2.5 sm:p-5 text-[11px] sm:text-sm font-display font-semibold text-text-secondary w-[28%]">
+                    Feature
+                  </th>
+                  <th className="text-left p-2.5 sm:p-5 text-[11px] sm:text-sm font-display font-semibold w-[36%]"
+                    style={{ color: '#6b7280', background: 'rgba(30,32,40,0.6)' }}>
+                    Traditional Banking
+                  </th>
+                  <th className="text-left p-2.5 sm:p-5 text-[11px] sm:text-sm font-display font-bold w-[36%]"
+                    style={{ background: 'linear-gradient(135deg, rgba(201,162,39,0.18), rgba(245,215,105,0.08))', color: 'hsl(45 75% 47%)', borderLeft: '1px solid rgba(201,162,39,0.2)', borderRight: '1px solid rgba(201,162,39,0.2)' }}>
+                    ✦ dB7
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((row, i) => (
-                  <tr key={row.feature} className={i < rows.length - 1 ? "border-b border-primary/5" : ""}>
-                    <td className="p-5 text-sm font-medium text-foreground">{row.feature}</td>
-                    <td className="p-5 text-sm text-text-secondary">
-                      <span className="flex items-center gap-2">
-                        <XCircle size={16} className="text-text-tertiary shrink-0" />
+                  <motion.tr
+                    key={row.feature}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.3 + i * 0.07, duration: 0.4 }}
+                    className={`group transition-colors duration-200 hover:bg-primary/[0.03] ${i < rows.length - 1 ? "border-b border-primary/5" : ""} ${i % 2 === 0 ? "bg-white/[0.01]" : ""}`}
+                  >
+                    <td className="p-2.5 sm:p-5 text-[11px] sm:text-sm font-display font-semibold text-foreground">{row.feature}</td>
+                    <td className="p-2.5 sm:p-5 text-[11px] sm:text-sm font-display" style={{ background: 'rgba(20,22,30,0.3)' }}>
+                      <span className="flex items-start gap-1 sm:gap-2 text-gray-500">
+                        <XCircle size={12} className="text-red-500/70 shrink-0 mt-0.5 sm:w-[14px] sm:h-[14px]" />
                         {row.trad}
                       </span>
                     </td>
-                    <td className="p-5 text-sm text-foreground bg-primary/5 border-x border-primary/10">
-                      <span className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-primary shrink-0" />
+                    <td className="p-2.5 sm:p-5 text-[11px] sm:text-sm font-display"
+                      style={{ background: 'rgba(201,162,39,0.04)', borderLeft: '1px solid rgba(201,162,39,0.12)', borderRight: '1px solid rgba(201,162,39,0.12)' }}>
+                      <span className="flex items-start gap-1 sm:gap-2 text-white font-medium">
+                        <CheckCircle2 size={12} className="text-primary shrink-0 mt-0.5 sm:w-[14px] sm:h-[14px]" />
                         {row.db7}
                       </span>
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>

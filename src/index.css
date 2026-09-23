@@ -61,10 +61,13 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+    width: 100%;
   }
 }
 
@@ -92,9 +95,9 @@
   }
 
   .glass-card {
-    background: rgba(15, 17, 24, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(15, 17, 24, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(201, 162, 39, 0.08);
   }
 
@@ -138,5 +141,170 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
+  }
+
+  /* Hero CTA pulsing glow */
+  .hero-cta-glow {
+    box-shadow: 0 0 20px rgba(201, 162, 39, 0.35);
+    animation: cta-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes cta-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(201, 162, 39, 0.35); }
+    50% { box-shadow: 0 0 40px rgba(201, 162, 39, 0.6), 0 0 60px rgba(201, 162, 39, 0.2); }
+  }
+
+  /* Shimmer border for secondary CTA */
+  .shimmer-border::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 0.75rem;
+    background: linear-gradient(90deg, transparent, rgba(201,162,39,0.6), transparent);
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    animation: shimmer-rotate 2s linear infinite paused;
+  }
+  .shimmer-border:hover::after {
+    opacity: 1;
+    animation-play-state: running;
+  }
+  @keyframes shimmer-rotate {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Hero video fallback gradient */
+  @keyframes hero-gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .hero-gradient-fallback {
+    background: linear-gradient(135deg, #0a0b0f 0%, #1a1200 40%, #0a0b0f 70%, #050818 100%);
+    background-size: 300% 300%;
+    animation: hero-gradient-shift 8s ease infinite;
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    z-index: 9999;
+    background: linear-gradient(90deg, hsl(var(--gold-primary)), hsl(var(--gold-light)));
+    transform-origin: left;
+    will-change: transform;
+  }
+
+  /* Back to top button */
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, hsl(var(--gold-primary)), hsl(var(--gold-light)));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(201, 162, 39, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    will-change: transform;
+  }
+  .back-to-top:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(201, 162, 39, 0.45);
+  }
+
+  /* Section divider */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,162,39,0.15), transparent);
+    margin: 0 auto 1.25rem auto;
+  }
+  @media (min-width: 768px) {
+    .section-divider {
+      margin: 0 auto 2.5rem auto;
+    }
+  }
+
+  /* Gold gradient border animation for ecosystem cards */
+  @keyframes border-rotate {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  .animated-border-card {
+    position: relative;
+  }
+  .animated-border-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, rgba(201,162,39,0.5), transparent, rgba(201,162,39,0.3), transparent);
+    background-size: 300% 100%;
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: border-rotate 3s linear infinite paused;
+    z-index: -1;
+  }
+  .animated-border-card:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+  }
+
+  /* Problem card shake on hover */
+  @keyframes card-shake {
+    0%, 100% { transform: translateY(-8px) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(-0.5deg); }
+    75% { transform: translateY(-8px) rotate(0.5deg); }
+  }
+  .problem-card:hover {
+    animation: card-shake 0.4s ease-in-out;
+  }
+
+  /* Infinite marquee */
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee-infinite {
+    animation: marquee-scroll 20s linear infinite;
+    display: flex;
+    width: max-content;
+  }
+  .animate-marquee-infinite:hover {
+    animation-play-state: paused;
+  }
+
+  /* Testimonial auto-scroll */
+  @keyframes testimonial-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-testimonial-scroll {
+    animation: testimonial-scroll 30s linear infinite;
+    display: flex;
+    width: max-content;
+  }
+  .animate-testimonial-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Gold button shimmer on hover */
+  .btn-gold-shimmer {
+    background-size: 200% 100%;
+    background-image: linear-gradient(90deg, hsl(var(--gold-primary)) 0%, hsl(var(--gold-light)) 50%, hsl(var(--gold-primary)) 100%);
+    transition: background-position 0.4s ease;
+  }
+  .btn-gold-shimmer:hover {
+    background-position: right center;
   }
 }
